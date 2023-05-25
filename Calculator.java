@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.*;;
 
 // Only using variables, conditionals, and loops. Arrays for storing the history of operations + advanced maths operations like mean. No methods. No OOP.
 
@@ -11,7 +12,7 @@ public class Calculator {
         System.out.println("[+] Welcome to this calcultor built only with var, conditionals and loops!");
         System.out.println("[+] You can type in the digits 0000 at any time to quit the program");
 
-        // Infinite loop until user quits
+        // Main loop here
         while(true) {
 
             // Input 1st number
@@ -71,6 +72,24 @@ public class Calculator {
                         break;
                     } else if (continueOrNo.equals("n")) {
                         System.out.println("[+] Result of calculation = " + result);
+
+                        // Write to file
+                        System.out.println("Append the result to a txt file? y/n");
+                        while (true) {
+                            String writeOrNo = input.nextLine();
+                            try {
+                                if (writeOrNo.equals("y")) {
+                                    BufferedWriter writeResult = new BufferedWriter(new FileWriter("C:\\Users\\ycx-8\\Desktop\\Result.txt"));
+                                    writeResult.write("Result = " + result + "\n\n\n\n");
+                                    writeResult.write("Thank you for using Chenxi's calculator!");
+                                    writeResult.close();
+                                    break;
+                                } else if (writeOrNo.equals("n")) break;
+                            } catch (Exception e) {
+                                return;
+                            }
+                        }
+
                         exit1 = true;
                         break;
                     } else {
@@ -83,14 +102,29 @@ public class Calculator {
             }
             
 
-            // Restart or quit
-            System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to quit");
+            // Restart or quit + file i/o
+            System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to quit ");
             while (true) {
                 int redoOrQuit = input.nextInt();
+                input.nextLine();
                 if (redoOrQuit == 0000) System.exit(0);
                 if (redoOrQuit == 1) {
                     break;
                 } else if (redoOrQuit == 2) {
+                    try {
+                        BufferedReader readResult = new BufferedReader(new FileReader("C:\\Users\\ycx-8\\Desktop\\Result.txt"));
+                        String fileResult = "";
+                        while ( (fileResult = readResult.readLine()) != null) {
+                            System.out.println(fileResult);
+                        }
+                        readResult.close();
+                        System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to quit ");
+                        continue;
+                        } catch (Exception e) {
+                        return;
+                    }
+
+                } else if (redoOrQuit == 3) {
                     input.close();
                     System.exit(0);
                 } else {
