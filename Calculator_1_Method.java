@@ -12,6 +12,10 @@ public class Calculator_1_Method {
         System.out.println("[+] Welcome to this calcultor built only with var, conditionals and loops!");
         System.out.println("[+] You can type in the digits 0000 at any time to quit the program");
 
+        // Storing history of the results 
+        double[] history = new double[50];
+        int x = 0;
+
         // Main loop here
         while(true) {
 
@@ -72,6 +76,8 @@ public class Calculator_1_Method {
                         break;
                     } else if (continueOrNo.equals("n")) {
                         System.out.println("[+] Result of calculation = " + result);
+                        history[x] = result;
+                        x++;
 
                         // Write to file
                         System.out.println("Append the result to a txt file? y/n");
@@ -103,7 +109,7 @@ public class Calculator_1_Method {
             
 
             // Restart or quit + file i/o
-            System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to quit ");
+            System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to see result history || Enter 4 to quit ");
             while (true) {
                 int redoOrQuit = input.nextInt();
                 input.nextLine();
@@ -118,13 +124,20 @@ public class Calculator_1_Method {
                             System.out.println(fileResult);
                         }
                         readResult.close();
-                        System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to quit ");
+                        System.out.println("[?] Enter 1 to perform a new calculation || Enter 2 to read last result || Enter 3 to see result history || Enter 4 to quit ");
                         continue;
                         } catch (Exception e) {
                         return;
                     }
 
                 } else if (redoOrQuit == 3) {
+                    for (int i=0; i<history.length; i++) {
+                        if (history[i] != 0) {
+                            System.out.println("Result = " + history[i]);
+                        }
+                    }
+                    break;
+                } else if (redoOrQuit == 4) {
                     input.close();
                     System.exit(0);
                 } else {
