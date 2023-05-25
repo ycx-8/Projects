@@ -3,7 +3,7 @@ import java.io.*;;
 
 // Only using variables, conditionals, and loops. Arrays for storing the history of operations + advanced maths operations like mean. No methods. No OOP.
 
-public class Calculator {
+public class Calculator_1_Method {
 
     public static void main(String[] args) {
         
