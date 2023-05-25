@@ -9,7 +9,7 @@ public class Calculator_1_Method {
         
         Scanner input = new Scanner(System.in);
 
-        System.out.println("[+] Welcome to this calcultor built only with var, conditionals and loops!");
+        System.out.println("[+] Welcome to this calcultor built only with var, conditionals, loops and arrays!");
         System.out.println("[+] You can type in the digits 0000 at any time to quit the program");
 
         // Storing history of the results 
@@ -147,6 +147,5 @@ public class Calculator_1_Method {
             }
         }
 
-    }
-        
+    }      
 }
