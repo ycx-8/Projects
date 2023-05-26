@@ -150,6 +150,7 @@ public class Calculator_1_Method {
                             System.out.println("Result = " + history[i]);
                         }
                     }
+                    System.out.println(finalOptions);
                     continue;
                 } else if (redoOrQuit == 4) {
                     input.close();
